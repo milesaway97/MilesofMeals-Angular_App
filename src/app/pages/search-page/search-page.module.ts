@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { SearchPageRoutingModule } from './search-page-routing.module';
 import { SearchPageComponent } from './search-page.component';
+import {
+  RecipeSearchAutocompleteModule
+} from "../../features/recipe-search/components/recipe-search-autocomplete/recipe-search-autocomplete.module";
+import {
+  RecipeSearchListModule
+} from "../../features/recipe-search/components/recipe-search-list/recipe-search-list.module";
 
 
 @NgModule({
@@ -11,7 +17,9 @@ import { SearchPageComponent } from './search-page.component';
   ],
   imports: [
     CommonModule,
-    SearchPageRoutingModule
+    SearchPageRoutingModule,
+    RecipeSearchAutocompleteModule,
+    RecipeSearchListModule
   ]
 })
 export class SearchPageModule { }
