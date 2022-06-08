@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {RecipeSearchService} from "../../services/recipe-search.service";
+import {Meal} from "../../../../core/interfaces/meal";
+import {DataService} from "../../../../core/services/data.service";
 
 @Component({
   selector: 'app-recipe-search-list',
@@ -8,13 +9,16 @@ import {RecipeSearchService} from "../../services/recipe-search.service";
   styleUrls: ['./recipe-search-list.component.css']
 })
 export class RecipeSearchListComponent implements OnInit {
-  filteredOptions: Observable<string[]> | undefined;
+  filteredOptions: Observable<Meal[]> | undefined;
 
-  constructor(private recipeSearchService: RecipeSearchService) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.filteredOptions = this.recipeSearchService.valueChanges();
+    this.filteredOptions = this.dataService.getFilteredOptions();
+  }
 
+  onActivate() {
+    document.body.scrollTop = 0;
   }
 
 }

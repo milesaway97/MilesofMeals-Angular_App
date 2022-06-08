@@ -1,0 +1,10 @@
+/*.form {*/
+/*  margin-top: 30px;*/
+/*  margin-bottom: 30px;*/
+/*}*/
+.mat-form-field {
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #a44a3f;
+}

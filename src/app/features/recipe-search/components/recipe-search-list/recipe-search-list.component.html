@@ -1,5 +1,20 @@
-<mat-card>
-  <mat-card *ngFor="let option of filteredOptions | async">
-    {{option}}
-  </mat-card>
-</mat-card>
+<!--<mat-card id="main-card" *ngIf="dataService.fetchComplete">-->
+  <mat-grid-list id="grid" *ngIf="dataService.fetchComplete" cols="4" rowHeight="400px" gutterSize="45px">
+    <mat-grid-tile *ngFor="let option of filteredOptions | async | slice:0:32">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title routerLink="/recipes/{{option.idMeal}}{{option.strMeal}}">
+            {{option.strMeal}}
+          </mat-card-title>
+        </mat-card-header>
+        <div class="img-div">
+          <img mat-card-image src='{{option.strMealThumb}}'
+               routerLink="/recipes/{{option.idMeal}}{{option.strMeal}}"
+               alt="meal thumbnail">
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+<!--</mat-card>-->
+
+<router-outlet (activate)="onActivate()"></router-outlet>

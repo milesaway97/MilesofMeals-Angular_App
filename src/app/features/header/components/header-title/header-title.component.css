@@ -1,6 +1,5 @@
-#app-title {
+h1 {
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 10px;
   font-size: 60px;
+  color: #a44a3f
 }

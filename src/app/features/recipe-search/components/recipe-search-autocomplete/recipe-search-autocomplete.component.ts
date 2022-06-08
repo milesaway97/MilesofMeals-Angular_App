@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {RecipeSearchService} from "../../services/recipe-search.service";
+import { Component, OnInit, DoCheck} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {map, Observable, startWith } from 'rxjs';
-import data from "../../../../core/values/data.json";
+import {DataService} from "../../../../core/services/data.service";
 
 @Component({
   selector: 'app-recipe-search-autocomplete',
@@ -11,17 +9,12 @@ import data from "../../../../core/values/data.json";
 })
 export class RecipeSearchAutocompleteComponent implements OnInit {
   myControl = new FormControl();
-  options: string[] = [];
-  filteredOptions: Observable<string[]> | undefined;
 
-  constructor(private recipeSearchService: RecipeSearchService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.options = this.recipeSearchService.fetchData();
-
-    this.recipeSearchService.setFormControl(this.myControl);
-
-    this.filteredOptions = this.recipeSearchService.valueChanges();
+    this.myControl = this.dataService.getFormControl();
+    this.myControl.reset();
   }
 
 }

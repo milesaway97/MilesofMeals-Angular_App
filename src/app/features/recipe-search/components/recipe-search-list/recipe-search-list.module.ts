@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RecipeSearchListComponent} from "./recipe-search-list.component";
 import {MatCardModule} from "@angular/material/card";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -9,7 +11,9 @@ import {MatCardModule} from "@angular/material/card";
   declarations: [RecipeSearchListComponent],
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    RouterModule
   ],
   exports: [
     RecipeSearchListComponent
