@@ -1,0 +1,41 @@
+.item {
+  background-color: beige;
+}
+.item-title {
+  grid-area: title;
+}
+.item-image {
+  grid-area: image;
+}
+.item-ingredients {
+  grid-area: ingredients;
+}
+.item-instructions {
+  grid-area: instructions;
+}
+.item-source {
+  grid-area: source;
+}
+.item-drinkAlt {
+  grid-area: drinkAlt;
+}
+.item-buttons {
+  grid-area: buttons;
+}
+.mat-icon {
+  font-size: 18px;
+}
+.mat-list mat-list-item {
+  height: 35px;
+}
+.container {
+  /*background-color: darkcyan;*/
+  display: grid;
+  place-items: start center;
+  /*place-content: space-around space-around;*/
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: 200px;
+  grid-template-areas:
+    "image title drinkAlt source instructions ingredients buttons";
+  gap: 10px;
+}
