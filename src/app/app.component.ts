@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    //Fetches all meals from themealdb.com a single time when the app is loaded
     this.dataService.fetchData();
   }
 }

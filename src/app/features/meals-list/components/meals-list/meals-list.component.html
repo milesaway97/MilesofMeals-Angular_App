@@ -1,0 +1,112 @@
+<div>
+  <h1>List of Your Meals</h1>
+</div>
+<div *ngFor="let meal of meals$ | async">
+  <div class="container">
+    <div class="item item-title">
+      <h1>{{meal.strMeal}}</h1>
+    </div>
+    <div class="item item-image">
+      <img src="{{meal.strMealThumb}}" alt="{{meal.strMeal}}">
+    </div>
+    <mat-list class="item item-ingredients">
+      <mat-list-item *ngIf="meal.strIngredient1">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient1}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient2">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient2}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient3">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient3}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient4">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient4}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient5">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient5}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient6">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient6}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient7">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient7}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient8">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient8}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient9">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient9}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient10">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient10}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient11">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient11}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient12">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient12}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient13">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient13}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient14">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient14}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient15">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient15}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient16">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient16}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient17">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient17}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient18">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient18}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient19">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient19}}
+      </mat-list-item>
+      <mat-list-item *ngIf="meal.strIngredient20">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{meal.strIngredient20}}
+      </mat-list-item>
+    </mat-list>
+    <div class="item item-instructions">
+      <p>{{meal.strInstructions}}</p>
+    </div>
+    <div class="item item-source">
+      <p>{{meal.strSource}}</p>
+    </div>
+    <div class="item item-drinkAlt">
+      <p>{{meal.strDrinkAlternate}}</p>
+    </div>
+    <div class="item item-buttons">
+      <button [routerLink]="['edit/', meal._id]">Edit</button>
+      <button (click)="deleteMeal(meal._id || '')">Delete</button>
+    </div>
+  </div>
+</div>
+<div>
+  <button [routerLink]="['new']">Add a New Meal</button>
+</div>
+

@@ -1,0 +1,95 @@
+<div *ngFor="let myMeal of myMeal$ | async">
+  <div class="container">
+    <div class="item item-title">
+      <h1>{{myMeal.strMeal}}</h1>
+    </div>
+    <div class="item item-image">
+      <img src="{{myMeal.strMealThumb}}" alt="{{myMeal.strMeal}}">
+    </div>
+    <mat-list class="item item-ingredients">
+      <mat-list-item *ngIf="myMeal.strIngredient1">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient1}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient2">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient2}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient3">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient3}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient4">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient4}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient5">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient5}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient6">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient6}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient7">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient7}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient8">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient8}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient9">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient9}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient10">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient10}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient11">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient11}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient12">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient12}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient13">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient13}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient14">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient14}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient15">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient15}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient16">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient16}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient17">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient17}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient18">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient18}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient19">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient19}}
+      </mat-list-item>
+      <mat-list-item *ngIf="myMeal.strIngredient20">
+        <mat-icon>fiber_manual_record</mat-icon>
+        {{myMeal.strIngredient20}}
+      </mat-list-item>
+    </mat-list>
+    <div class="item item-description">
+      <p>{{myMeal.strInstructions}}</p>
+    </div>
+  </div>
+</div>

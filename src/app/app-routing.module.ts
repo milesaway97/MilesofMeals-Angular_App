@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'profile', loadChildren: () => import('./pages/profile-page/profile-page.module').then(m => m.ProfilePageModule) },
   { path: 'recipes/:id', loadChildren: () => import('./pages/recipe-details-page/recipe-details-page.module').then(m => m.RecipeDetailsPageModule) },
   { path: 'recipes', loadChildren: () => import('./pages/recipes-page/recipes-page.module').then(m => m.RecipesPageModule) },
-
 ];
 
 @NgModule({
