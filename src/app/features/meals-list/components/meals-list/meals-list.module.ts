@@ -5,15 +5,27 @@ import {MealsListRoutingModule} from "./meals-list-routing.module";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {GoogleSigninButtonModule} from '@abacritt/angularx-social-login';
+// import { SocialLoginModule } from "@abacritt/angularx-social-login";
 
 @NgModule({
-  declarations: [MealsListComponent],
+  declarations: [
+    MealsListComponent,
+    // GoogleSigninButtonDirective,
+  ],
   imports: [
     CommonModule,
     MealsListRoutingModule,
     MatListModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatGridListModule,
+    MatCardModule,
+    MatButtonModule,
+    GoogleSigninButtonModule,
   ],
   exports: [MealsListComponent]
 })

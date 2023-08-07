@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Meal} from "../../../../core/interfaces/meal";
 import {DataService} from "../../../../core/services/data.service";
+import {MealService} from "../../../../core/services/meal.service";
 
 @Component({
   selector: 'app-recipe-search-list',
@@ -9,12 +10,26 @@ import {DataService} from "../../../../core/services/data.service";
   styleUrls: ['./recipe-search-list.component.css']
 })
 export class RecipeSearchListComponent implements OnInit {
-  filteredOptions: Observable<Meal[]> | undefined;
+  meals$: Observable<Meal[]> = new Observable();
 
-  constructor(public dataService: DataService) { }
+  constructor(private mealsService: MealService) { }
 
   ngOnInit(): void {
-    this.filteredOptions = this.dataService.getFilteredOptions();
+    this.fetchMeals();
+  }
+
+  deleteMeal(id: string): void {
+    this.mealsService.deleteMeal(id).subscribe({
+      next: () => this.fetchMeals()
+    });
+  }
+
+  private fetchMeals(): void {
+    this.meals$ = this.mealsService.getMeals();
+  }
+
+  goToLink(url: string) {
+    window.open(url, "_blank");
   }
 
   onActivate() {

@@ -8,8 +8,6 @@ const routes: Routes = [
     component: HomePageComponent,
     children: [
       { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
-      { path: 'sign-in', loadChildren: () => import('../../features/google-social/components/google-social-login/google-social-login.module')
-          .then(m => m.GoogleSocialLoginModule) },
     ]
   }
 ];

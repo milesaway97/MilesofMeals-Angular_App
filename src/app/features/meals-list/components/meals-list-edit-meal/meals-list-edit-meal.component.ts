@@ -11,19 +11,10 @@ import { MealService } from '../../../../core/services/meal.service';
 })
 export class MealsListEditMealComponent implements OnInit {
   meal: BehaviorSubject<Meal> = new BehaviorSubject<Meal>({
-    idMeal: "",
-    strArea: "",
-    strCategory: "",
-    strIngredient1: "",
-    strIngredient2: "",
-    strIngredient3: "",
-    strInstructions: "",
-    strMeal: "",
-    strMealThumb: "",
-    strMeasure1: "",
-    strMeasure2: "",
-    strMeasure3: "",
-    strTags: ""
+    name: "",
+    imgSource: "",
+    url: "",
+    id: "",
   });
 
   constructor(

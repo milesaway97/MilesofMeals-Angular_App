@@ -1,41 +1,36 @@
-.item {
-  background-color: beige;
+h1 {
+  text-align: center;
 }
-.item-title {
-  grid-area: title;
+.NewMeal {
+  text-align: center;
 }
-.item-image {
-  grid-area: image;
+#grid {
+   width: 90%;
+   height: 100%;
+ }
+.mat-card {
+  background-color: #f4d6a6;
+  color: #A44A3F;
+  border-radius: 10px;
 }
-.item-ingredients {
-  grid-area: ingredients;
+.mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.item-instructions {
-  grid-area: instructions;
+.mat-card-title {
+  cursor: pointer;
 }
-.item-source {
-  grid-area: source;
+.mat-card img {
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 100%;
+  border-radius: 10px;
 }
-.item-drinkAlt {
-  grid-area: drinkAlt;
-}
-.item-buttons {
-  grid-area: buttons;
-}
-.mat-icon {
-  font-size: 18px;
-}
-.mat-list mat-list-item {
-  height: 35px;
-}
-.container {
-  /*background-color: darkcyan;*/
-  display: grid;
-  place-items: start center;
-  /*place-content: space-around space-around;*/
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: 200px;
-  grid-template-areas:
-    "image title drinkAlt source instructions ingredients buttons";
-  gap: 10px;
+.img-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
 }
