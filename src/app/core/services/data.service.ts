@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {Meal} from "../interfaces/meal";
 import {from, map, mergeMap, Observable, startWith, Subject, takeUntil} from "rxjs";
 import {ConfigService} from "./config.service";
@@ -8,7 +8,7 @@ import {ConfigService} from "./config.service";
   providedIn: 'root'
 })
 export class DataService {
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
   options: Meal[] = [];
   filteredOptions: Observable<Meal[]> | undefined;
   private endSubs$ = new Subject();
@@ -42,7 +42,7 @@ export class DataService {
       },
       err => console.log('Error loading a meal', err),
       () => {
-        this.options.sort((a,b) => (a.strMeal > b.strMeal) ? 1 : -1);
+        this.options.sort((a,b) => (a.name > b.name) ? 1 : -1);
         this.fetchComplete = true;
         // this.filteredOptions = this.valueChanges()
       },
@@ -58,7 +58,7 @@ export class DataService {
     return this.filteredOptions = this.valueChanges();
   }
 
-  setFormControl(myControl: FormControl) {
+  setFormControl(myControl: UntypedFormControl) {
     this.myControl = myControl;
   }
 
@@ -76,6 +76,6 @@ export class DataService {
 
   private _filter(name: string): Meal[] {
     const filterValue = name.toLowerCase();
-    return this.options.filter(option => option.strMeal.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 }

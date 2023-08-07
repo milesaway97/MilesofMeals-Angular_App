@@ -1,100 +1,34 @@
 <form class="meal-form" autocomplete="off" [formGroup]="mealForm" (ngSubmit)="submitForm()">
 
   <div class="form-floating">
-    <input class="form-control" type="text" id="strMeal" formControlName="strMeal" placeholder="Name" required>
-    <label for="strMeal">Name</label>
+    <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
+    <label for="name">Name</label>
   </div>
-  <div *ngIf="strMeal.invalid && (strMeal.dirty || strMeal.touched)" class="alert alert-danger">
-    <div *ngIf="strMeal.errors?.['required']">
+  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+    <div *ngIf="name.errors?.['required']">
       Name is required.
     </div>
-<!--    <div *ngIf="name.errors?.['minlength']">-->
-<!--      Name must be at least 3 characters long.-->
-<!--    </div>-->
   </div>
 
   <div class="form-floating">
-    <input class="form-control" type="text" id="strMealThumb" formControlName="strMealThumb" placeholder="Meal Image Link" required>
-    <label for="strMealThumb">Meal Image Link</label>
+    <input class="form-control" type="text" id="imgSource" formControlName="imgSource" placeholder="Meal Image Link" required>
+    <label for="imgSource">Meal Image Link</label>
   </div>
-  <div *ngIf="strMealThumb.invalid && (strMealThumb.dirty || strMealThumb.touched)" class="alert alert-danger">
-    <div *ngIf="strMealThumb.errors?.['required']">
+  <div *ngIf="imgSource.invalid && (imgSource.dirty || imgSource.touched)" class="alert alert-danger">
+    <div *ngIf="imgSource.errors?.['required']">
       Image Link is required.
     </div>
   </div>
 
   <div class="form-floating">
-    <input class="form-control" type="text" id="strMeasure1" formControlName="strMeasure1" placeholder="Measurement" required>
-    <label for="strMeasure1">Measurement1</label>
+    <input class="form-control" type="text" id="url" formControlName="url" placeholder="Measurement" required>
+    <label for="url">Recipe URL</label>
   </div>
-  <div *ngIf="strMeasure1.invalid && (strMeasure1.dirty || strMeasure1.touched)" class="alert alert-danger">
-    <div *ngIf="strMeasure1.errors?.['required']">
-      Measurement is required.
+  <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+    <div *ngIf="url.errors?.['required']">
+      URL is required.
     </div>
   </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strMeasure2" formControlName="strMeasure2" placeholder="Measurement" required>
-    <label for="strMeasure2">Measurement2</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strMeasure3" formControlName="strMeasure3" placeholder="Measurement" required>
-    <label for="strMeasure3">Measurement3</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strTags" formControlName="strTags" placeholder="Tags" required>
-    <label for="strTags">Tags</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strArea" formControlName="strArea" placeholder="Area" required>
-    <label for="strArea">Area</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strCategory" formControlName="strCategory" placeholder="Category" required>
-    <label for="strCategory">Category</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strIngredient1" formControlName="strIngredient1" placeholder="Ingredient" required>
-    <label for="strIngredient1">Ingredient1</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strIngredient2" formControlName="strIngredient2" placeholder="Ingredient" required>
-    <label for="strIngredient2">Ingredient2</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strIngredient3" formControlName="strIngredient3" placeholder="Ingredient" required>
-    <label for="strIngredient3">Ingredient3</label>
-  </div>
-
-  <div class="form-floating">
-    <input class="form-control" type="text" id="strInstructions" formControlName="strInstructions" placeholder="Instructions" required>
-    <label for="strInstructions">Instructions</label>
-  </div>
-
-
-<!--  -->
-<!--  <div class=">-->
-<!--    <div class="form-check">-->
-<!--      <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="junior" required>-->
-<!--      <label class="form-check-label" for="level-junior">Junior</label>-->
-<!--    </div>-->
-<!--    <div class="form-check">-->
-<!--      <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="mid">-->
-<!--      <label class="form-check-label" for="level-mid">Mid</label>-->
-<!--    </div>-->
-<!--    <div class="form-check">-->
-<!--      <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-senior"-->
-<!--             value="senior">-->
-<!--      <label class="form-check-label" for="level-senior">Senior</label>-->
-<!--    </div>-->
-<!--  </div>-->
 
 <!--  <button class="btn btn-primary" type="submit" [disabled]="mealForm.invalid">Add</button>-->
   <button class="btn btn-primary" type="submit">Add</button>

@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {UntypedFormControl} from "@angular/forms";
 import {DataService} from "../../../../core/services/data.service";
 
 @Component({
@@ -8,7 +8,7 @@ import {DataService} from "../../../../core/services/data.service";
   styleUrls: ['./recipe-search-autocomplete.component.css']
 })
 export class RecipeSearchAutocompleteComponent implements OnInit {
-  myControl = new FormControl();
+  myControl = new UntypedFormControl();
 
   constructor(private dataService: DataService) {}
 

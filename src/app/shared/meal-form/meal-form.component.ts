@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Meal } from '../../core/interfaces/meal'
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-meal-form',
@@ -11,19 +12,10 @@ import { Meal } from '../../core/interfaces/meal'
 export class MealFormComponent implements OnInit {
   @Input()
   initialState: BehaviorSubject<Meal> = new BehaviorSubject<Meal>({
-    idMeal: "",
-    strArea: "",
-    strCategory: "",
-    strIngredient1: "",
-    strIngredient2: "",
-    strIngredient3: "",
-    strInstructions: "",
-    strMeal: "",
-    strMealThumb: "",
-    strMeasure1: "",
-    strMeasure2: "",
-    strMeasure3: "",
-    strTags: ""
+    name: "",
+    imgSource: "",
+    url: "",
+    id: "",
   });
 
   @Output()
@@ -32,40 +24,22 @@ export class MealFormComponent implements OnInit {
   @Output()
   formSubmitted = new EventEmitter<Meal>();
 
-  mealForm: FormGroup = new FormGroup({});
+  mealForm: UntypedFormGroup = new UntypedFormGroup({});
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: UntypedFormBuilder) { }
 
-  get idMeal() { return this.mealForm.get('idMeal')!; }
-  get strArea() { return this.mealForm.get('strArea')!; }
-  get strCategory() { return this.mealForm.get('strCategory')!; }
-  get strIngredient1() { return this.mealForm.get('strIngredient1')!; }
-  get strIngredient2() { return this.mealForm.get('strIngredient2')!; }
-  get strIngredient3() { return this.mealForm.get('strIngredient3')!; }
-  get strInstructions() { return this.mealForm.get('strInstructions')!; }
-  get strMeal() { return this.mealForm.get('strMeal')!; }
-  get strMealThumb() { return this.mealForm.get('strMealThumb')!; }
-  get strMeasure1() { return this.mealForm.get('strMeasure1')!; }
-  get strMeasure2() { return this.mealForm.get('strMeasure2')!; }
-  get strMeasure3() { return this.mealForm.get('strMeasure3')!; }
-  get strTags() { return this.mealForm.get('strTags')!; }
+  get name() { return this.mealForm.get('name')!; }
+  get imgSource() { return this.mealForm.get('imgSource')!; }
+  get url() { return this.mealForm.get('url')!; }
+  get id() { return this.mealForm.get('id')!; }
 
   ngOnInit() {
     this.initialState.subscribe(meal => {
       this.mealForm = this.fb.group({
-        idMeal: [ meal.idMeal, [Validators.required] ],
-        strArea: [ meal.strArea, [ Validators.required] ],
-        strCategory: [ meal.strCategory, [Validators.required] ],
-        strIngredient1: [ meal.strIngredient1, [Validators.required] ],
-        strIngredient2: [ meal.strIngredient2, [Validators.required] ],
-        strIngredient3: [ meal.strIngredient3, [Validators.required] ],
-        strInstructions: [ meal.strInstructions, [Validators.required] ],
-        strMeal: [ meal.strMeal, [Validators.required] ],
-        strMealThumb: [ meal.strMealThumb, [Validators.required] ],
-        strMeasure1: [ meal.strMeasure1, [Validators.required] ],
-        strMeasure2: [ meal.strMeasure2, [Validators.required] ],
-        strMeasure3: [ meal.strMeasure3, [Validators.required] ],
-        strTags: [ meal.strTags, [Validators.required] ],
+        name: [ meal.name, [Validators.required] ],
+        imgSource: [ meal.imgSource, [ Validators.required] ],
+        url: [ meal.url, [Validators.required] ],
+        id: [ meal.id, [Validators.required] ],
       });
     });
 
