@@ -9,6 +9,7 @@ import {DataService} from "../../../../core/services/data.service";
 })
 export class RecipeSearchAutocompleteComponent implements OnInit {
   myControl = new UntypedFormControl();
+  auto: any;
 
   constructor(private dataService: DataService) {}
 

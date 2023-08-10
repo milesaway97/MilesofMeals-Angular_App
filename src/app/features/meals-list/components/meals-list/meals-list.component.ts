@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {
   SocialAuthService,
   GoogleLoginProvider,
@@ -9,7 +7,8 @@ import {
 } from '@abacritt/angularx-social-login';
 import { Meal } from '../../../../core/interfaces/meal';
 import { MealService } from '../../../../core/services/meal.service';
-
+import { UserService} from "../../../../core/services/user.service";
+import {User} from "../../../../core/interfaces/user";
 
 @Component({
   selector: 'app-meals-list',
@@ -17,35 +16,30 @@ import { MealService } from '../../../../core/services/meal.service';
   styleUrls: ['./meals-list.component.css']
 })
 export class MealsListComponent implements OnInit {
-  // loginForm!: FormGroup;
   socialUser!: SocialUser;
+  tempUser: Observable<User> | undefined;
   isLoggedin?: boolean;
   meals$: Observable<Meal[]> = new Observable();
 
   constructor(
     private mealsService: MealService,
-    // private formBuilder: FormBuilder,
+    private userService: UserService,
     private socialAuthService: SocialAuthService,
   ) {}
 
   ngOnInit(): void {
     this.fetchMeals();
 
-    // this.loginForm = this.formBuilder.group({
-    //   email: ['', Validators.required],
-    //   password: ['', Validators.required],
-    // });
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
-      this.isLoggedin = user != null; // = true
-      // this.newItemEvent.emit(this.isLoggedin);
+      this.isLoggedin = user != null;
+      if (this.isLoggedin) {
+        this.userService.updateUser(this.socialUser.id, this.socialUser);
+      }
       console.log(this.socialUser);
       console.log(this.isLoggedin);
     });
-    // console.log(this.isLoggedin);
   }
-
-  // @Output() newItemEvent = new EventEmitter<boolean>();
 
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
