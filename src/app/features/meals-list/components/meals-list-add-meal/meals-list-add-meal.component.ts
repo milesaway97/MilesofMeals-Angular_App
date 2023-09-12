@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Meal } from '../../../../core/interfaces/meal';
 import { MealService } from '../../../../core/services/meal.service';
@@ -11,7 +11,7 @@ import { MealService } from '../../../../core/services/meal.service';
 export class MealsListAddMealComponent implements OnInit {
   constructor(
     private router: Router,
-    private mealService: MealService
+    private mealService: MealService,
   ) { }
 
   ngOnInit(): void {

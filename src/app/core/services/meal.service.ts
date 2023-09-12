@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Meal } from '../interfaces/meal';
-import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MealService {
-  // private url = 'http://localhost:8080';
-  private url = 'https://milesofmeals-server.onrender.com/';
+  // private url = 'https://milesofmeals-server.onrender.com';
+  private url = 'http://localhost:3000';
   private meals$: Subject<Meal[]> = new Subject();
-  private users$: Subject<User[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,10 +20,18 @@ export class MealService {
         this.meals$.next(meals);
       });
   }
-
+  // returns all meals
   getMeals(): Subject<Meal[]> {
     this.refreshMeals();
-    console.log('get meals');
+    return this.meals$;
+  }
+
+  // pass current user's id to return their meals
+  getUserMeals(userId: string): Subject<Meal[]> {
+    this.httpClient.get<Meal[]>(`${this.url}/meals/usermeals/${userId}`)
+      .subscribe(meals => {
+        this.meals$.next(meals);
+      });
     return this.meals$;
   }
 

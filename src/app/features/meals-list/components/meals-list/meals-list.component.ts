@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {
   SocialAuthService,
   GoogleLoginProvider,
@@ -9,7 +7,7 @@ import {
 } from '@abacritt/angularx-social-login';
 import { Meal } from '../../../../core/interfaces/meal';
 import { MealService } from '../../../../core/services/meal.service';
-
+import { UserService} from "../../../../core/services/user.service";
 
 @Component({
   selector: 'app-meals-list',
@@ -17,35 +15,43 @@ import { MealService } from '../../../../core/services/meal.service';
   styleUrls: ['./meals-list.component.css']
 })
 export class MealsListComponent implements OnInit {
-  // loginForm!: FormGroup;
   socialUser!: SocialUser;
   isLoggedin?: boolean;
   meals$: Observable<Meal[]> = new Observable();
 
   constructor(
     private mealsService: MealService,
-    // private formBuilder: FormBuilder,
+    private userService: UserService,
     private socialAuthService: SocialAuthService,
   ) {}
 
   ngOnInit(): void {
-    this.fetchMeals();
-
-    // this.loginForm = this.formBuilder.group({
-    //   email: ['', Validators.required],
-    //   password: ['', Validators.required],
-    // });
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
-      this.isLoggedin = user != null; // = true
-      // this.newItemEvent.emit(this.isLoggedin);
-      console.log(this.socialUser);
-      console.log(this.isLoggedin);
-    });
-    // console.log(this.isLoggedin);
-  }
+      this.isLoggedin = user != null;
+      this.userService.updateCurrUser(this.socialUser);
 
-  // @Output() newItemEvent = new EventEmitter<boolean>();
+      if (this.isLoggedin) {
+        this.fetchUserMeals();
+        this.userService.updateUser(this.socialUser.id, {
+          "name": this.socialUser.name,
+          "email": this.socialUser.email,
+          "id": this.socialUser.id,
+          "idToken": this.socialUser.idToken,
+          "photoUrl": this.socialUser.photoUrl
+        }).subscribe({
+          next: () => {
+            console.log("updated user");
+          },
+          error: (error) => {
+            alert("Failed to update user");
+            console.error(error);
+          }
+        });
+      }
+      console.log(this.socialUser);
+    });
+  }
 
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
@@ -57,12 +63,13 @@ export class MealsListComponent implements OnInit {
 
   deleteMeal(id: string): void {
     this.mealsService.deleteMeal(id).subscribe({
-      next: () => this.fetchMeals()
+      next: () => this.fetchUserMeals()
     });
   }
 
-  private fetchMeals(): void {
-    this.meals$ = this.mealsService.getMeals();
+  //Get current user's meals
+  private fetchUserMeals(): void {
+    this.meals$ = this.mealsService.getUserMeals(this.socialUser.id);
   }
 
   goToLink(url: string) {
