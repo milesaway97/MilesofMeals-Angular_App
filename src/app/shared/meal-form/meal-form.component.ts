@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Meal } from '../../core/interfaces/meal'
-import {HttpClient} from "@angular/common/http";
+import {UserService} from "../../core/services/user.service";
 
 @Component({
   selector: 'app-meal-form',
@@ -26,7 +26,8 @@ export class MealFormComponent implements OnInit {
 
   mealForm: UntypedFormGroup = new UntypedFormGroup({});
 
-  constructor(private fb: UntypedFormBuilder) { }
+  constructor(private fb: UntypedFormBuilder,
+              private userService: UserService) { }
 
   get name() { return this.mealForm.get('name')!; }
   get imgSource() { return this.mealForm.get('imgSource')!; }
@@ -39,7 +40,7 @@ export class MealFormComponent implements OnInit {
         name: [ meal.name, [Validators.required] ],
         imgSource: [ meal.imgSource, [ Validators.required] ],
         url: [ meal.url, [Validators.required] ],
-        id: [ meal.id, [Validators.required] ],
+        id: [ this.userService.getCurrUser().id, [Validators.required] ],
       });
     });
 

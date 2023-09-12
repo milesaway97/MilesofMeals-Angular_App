@@ -4,10 +4,22 @@ h1 {
 .NewMeal {
   text-align: center;
 }
+.Login {
+  text-align: center;
+}
+.LoginButton {
+  width: 100%;
+}
+.LoginButton > div {
+  margin: 0 auto;
+}
+.Profile {
+  text-align: center;
+}
 #grid {
    width: 90%;
    height: 100%;
- }
+}
 .mat-card {
   background-color: #f4d6a6;
   color: #A44A3F;

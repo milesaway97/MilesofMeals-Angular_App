@@ -1,53 +1,41 @@
-<div class="container" style="max-width: 550px">
-  <h2 class="text-center mb-5">Angular Login with Google</h2>
-  <div *ngIf="isLoggedin === false || isLoggedin === undefined">
-    <div>
-<!--      <button type="button" (click)="loginWithGoogle()" class="btn btn-danger">Login with Google</button>-->
-      <asl-google-signin-button type='icon' size='medium'></asl-google-signin-button>
-    </div>
-  </div>
-  <div *ngIf="isLoggedin === true">
-    <div class="form-group">
-      <label>First Name</label>
-      <input type="text" class="form-control" [value]="socialUser.firstName" id="firstname" readonly>
-    </div>
-    <div class="form-group">
-      <label>Last Name</label>
-      <input type="text" class="form-control" [value]="socialUser.lastName" id="lastname" readonly>
-    </div>
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" class="form-control" [value]="socialUser.email" id="email" readonly>
-    </div>
+<div class="Login">
+  <div *ngIf="isLoggedin; else loggedOut">
+    <h1>Welcome, {{socialUser.firstName}}!</h1>
     <button type="button" (click)="logOut()" class="btn btn-primary">Log Out</button>
   </div>
+  <ng-template #loggedOut>
+    <h1>Log In to Manage Your Meals!</h1>
+  </ng-template>
+  <div class="LoginButton" *ngIf="!isLoggedin || isLoggedin === undefined">
+    <asl-google-signin-button type="standard" size="large">button</asl-google-signin-button>
+  </div>
 </div>
 
-<div>
-  <h1>Your Meals</h1>
+<div class="Profile" *ngIf="isLoggedin">
+  <div>
+    <h1>Your Meals</h1>
+  </div>
+  <div class="NewMeal">
+    <button [routerLink]="['new']">Add a New Meal</button>
+  </div>
+  <mat-grid-list id="grid" cols="4" rowHeight="400px" gutterSize="45px">
+    <mat-grid-tile *ngFor="let meal of meals$ | async | slice:0:32">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            {{meal.name}}
+          </mat-card-title>
+        </mat-card-header>
+        <div class="img-div">
+          <img mat-card-image src='{{meal.imgSource}}'
+               (click)="goToLink(meal.url)"
+               alt="meal thumbnail">
+        </div>
+        <mat-card-actions>
+          <button mat-button [routerLink]="['edit/', meal._id]">Edit</button>
+          <button mat-button (click)="deleteMeal(meal._id || '')">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-
-<div class="NewMeal">
-  <button [routerLink]="['new']">Add a New Meal</button>
-</div>
-
-<mat-grid-list id="grid" cols="4" rowHeight="400px" gutterSize="45px">
-  <mat-grid-tile *ngFor="let meal of meals$ | async | slice:0:32">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          {{meal.name}}
-        </mat-card-title>
-      </mat-card-header>
-      <div class="img-div">
-        <img mat-card-image src='{{meal.imgSource}}'
-             (click)="goToLink(meal.url)"
-             alt="meal thumbnail">
-      </div>
-      <mat-card-actions>
-        <button mat-button [routerLink]="['edit/', meal._id]">Edit</button>
-        <button mat-button (click)="deleteMeal(meal._id || '')">Delete</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
